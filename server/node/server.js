@@ -13,8 +13,28 @@
 /* jshint nomen:false */
 /* global require, __dirname, unescape, console */
 
+DEFAULT_PORT = 8888;
+
+console.log("jQuery File Upload Demo Node.js Server");
+var arg = process.argv[2],
+  port;
+if (arg === '-h' || arg === '--help') {
+  console.log("Usage:");
+  console.log("node server.js [port] (Default: " + DEFAULT_PORT + ")");
+  process.exit(0);
+} else if (arg) {
+  port = parseInt(arg, 10);
+  if(isNaN(port)) {
+    console.error("Invalid port number " + arg);
+    process.exit(2);
+  }
+} else {
+  port = DEFAULT_PORT;
+}
+
 (function (port) {
     'use strict';
+    console.log("Listening on port " + port);
     var path = require('path'),
         fs = require('fs'),
         // Since Node 0.8, .existsSync() moved from path to fs:
@@ -289,4 +309,4 @@
     } else {
         require('http').createServer(serve).listen(port);
     }
-}(8888));
+}(port));
