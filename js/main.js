@@ -20,10 +20,8 @@ $(function () {
     demoHostname: 'blueimp.github.io',
     uploadUrl: 'http://localhost:8888',
     uploadAndCropUrl: 'server/php/image_crop_and_size.php',
-    zclipSwfLocation: 'bower_components/jquery-zclip/ZeroClipboard.swf'
   };
 
-  var zclipInitialized = false;
   var $activeImage;
   var $fileUpload = $('#fileupload');
   var $inWidthCrop = $('#inWidthCrop');
@@ -53,19 +51,6 @@ $(function () {
     $('#startCrop, #startResize, #inWidthCrop, #inHeightCrop').removeAttr('disabled');
     $('tbody.files').find('tr').remove();
     loadExistingFiles();
-  }
-
-  function initZClip() {
-    if (zclipInitialized) {
-      return;
-    }
-    $('a.modal-copy').zclip({
-      path: config.zclipSwfLocation,
-      copy: function () {
-        return $('#urlImage').val();
-      }
-    });
-    zclipInitialized = true;
   }
 
   function enableStartResize(activar) {
@@ -112,7 +97,7 @@ $(function () {
         url: '//jquery-file-upload.appspot.com/',
         type: 'HEAD'
       }).fail(function () {
-        $('<div class="alert alert-danger"/>')
+        $('<div class="alert alert-danger"></div>')
           .text('Upload server currently unavailable - ' + new Date())
           .appendTo('#fileupload');
       });

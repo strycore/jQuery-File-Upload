@@ -42,8 +42,6 @@
   <noscript>
     <link rel="stylesheet" href="css/jquery.fileupload-ui-noscript.css">
   </noscript>
-  <!-- CSS to make adjusments to some layouts of JQ FURAC -->
-  <link rel="stylesheet" href="css/jquery.furac.ui.css">
   <!-- Shim to make HTML5 elements usable in older Internet Explorer versions -->
   <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -170,57 +168,9 @@
   <a class="close">×</a>
   <a class="play-pause"></a>
   <ol class="indicator"></ol>
+
 </div>
 <!-- modal-gallery is the modal dialog used for the image gallery -->
-<div id="modal-gallery" class="modal modal-gallery hide fade" data-filter=":odd">
-  <div class="modal-header">
-    <a class="close" data-dismiss="modal">&times;</a>
-
-    <h3 class="modal-title"></h3>
-  </div>
-  <div class="modal-body">
-    <div class="modal-image"></div>
-  </div>
-  <div class="modal-footer">
-    <form id="opCrop">
-      <button class="btn modal-crop" type="button" id="startResize">
-        <i class="icon-resize-horizontal"></i>
-        Resize to:
-      </button>
-      <a class="btn modal-crop" target="_blank" id="startCrop">
-        <i class="icon-th"></i>
-        <span>Crop Image to:</span>
-      </a>
-      <label for="inWidthCrop">Width</label> <input type="number" name="widthCrop" id="inWidthCrop">
-      <label for="inHeightCrop">Height</label> <input type="number" name="heightCrop" id="inHeightCrop">
-
-      <button type="reset" class="btn btn-warning cancel">
-        <i class="icon-ban-circle icon-white"></i>
-        Clear
-      </button>
-    </form>
-    <input type="text" id="urlImage" title="Image URL">&nbsp;<a class="btn modal-copy">
-    <span>Copy to clipboard</span>
-  </a>
-    <br>
-    <a class="btn modal-download" target="_blank">
-      <i class="icon-download"></i>
-      <span>Download</span>
-    </a>
-    <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000">
-      <i class="icon-play icon-white"></i>
-      <span>Slideshow</span>
-    </a>
-    <a class="btn btn-info modal-prev">
-      <i class="icon-arrow-left icon-white"></i>
-      <span>Previous</span>
-    </a>
-    <a class="btn btn-primary modal-next">
-      <span>Next</span>
-      <i class="icon-arrow-right icon-white"></i>
-    </a>
-  </div>
-</div>
 <!-- modal for cropping -->
 <div id="croppingModal" class="modal hide" data-width="932" data-height="319">
   <div class="modal-header">
@@ -280,6 +230,25 @@
                     <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
                 {% } %}
             </span>
+        </td>
+        <td>
+          <form class="crop-form">
+            <button class="btn modal-crop" type="button" id="startResize">
+              <i class="glyphicon glyphicon-resize-horizontal"></i>
+              Resize to:
+            </button>
+            <a class="btn modal-crop" target="_blank" id="startCrop">
+              <i class="icon-th"></i>
+              <span>Crop Image to:</span>
+            </a>
+            <label for="inWidthCrop">Width</label> <input type="number" name="widthCrop" id="inWidthCrop">
+            <label for="inHeightCrop">Height</label> <input type="number" name="heightCrop" id="inHeightCrop">
+
+            <button type="reset" class="btn btn-warning cancel">
+              <i class="icon-ban-circle icon-white"></i>
+              Clear
+            </button>
+          </form>
         </td>
         <td>
             <p class="name">
@@ -345,8 +314,6 @@
 <script src="js/jquery.fileupload-validate.js"></script>
 <!-- The File Upload user interface plugin -->
 <script src="js/jquery.fileupload-ui.js"></script>
-<!-- zClip http://www.steamdev.com/zclip/ -->
-<script src="bower_components/jquery-zclip/jquery.zclip.js"></script>
 <!-- Jcrop https://github.com/tapmodo/Jcrop -->
 <script src="bower_components/Jcrop/js/jquery.Jcrop.min.js"></script>
 <!-- The main application script -->
