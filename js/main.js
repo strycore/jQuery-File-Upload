@@ -89,21 +89,21 @@ $(function () {
 
         $('#inWidthCrop').val($('#croppingModal').attr('data-width'));
         $('#inHeightCrop').val($('#croppingModal').attr('data-height'));
-        
+
         $('#startCrop').click(function(eve){
             eve.preventDefault();
             var $cm = $('#croppingModal');
-            var cssProperties = Array('margin-left','margin-top','width');
+            var cssProperties = new Array('margin-left','margin-top','width');
             for (var i = cssProperties.length - 1; i >= 0; i--) {
                 $cm.css(cssProperties[i],$('#modal-gallery').css(cssProperties[i]));
-            };
+            }
              $cm.find('.modal-body').css('max-height','none');
             $('#croppingModal').modal('show').find('.close, .closeModal').click(function(eve){
                 eve.preventDefault();
                 $('#croppingModal').modal('hide');
             });
             $('#modal-gallery').modal('hide');
-            
+
             var picWidth = $activeImage.width();
             var picHeight = $activeImage.height();
             if (!picWidth) return;
@@ -156,7 +156,7 @@ $(function () {
     });
     $('#btnDoCrop').click(function(eve){
         eve.preventDefault();
-        $.post('server/php/image_crop_and_size.php',cropCoordinates,afterCropping)
+        $.post('server/php/image_crop_and_size.php', cropCoordinates, afterCropping);
     });
     $('#startResize').click(function(){
         var noSize=true;
@@ -172,7 +172,7 @@ $(function () {
         if(noSize)return;//there's no width nor height defined to do the resize.
         $('#startCrop, #startResize, #inWidthCrop, #inHeightCrop').attr('disabled','disabled');
         $.post('server/php/image_crop_and_size.php',resizeData,afterResize);
-        
+
     });
 });
 
@@ -206,7 +206,7 @@ function enableStartResize(activar){
     }else{
         $targ.attr('disabled','disabled');
     }
-    
+
 }
 
 /*
@@ -222,10 +222,10 @@ function enableStartResize(activar){
  * $(images).bind('load', function (e) {
  *   // Do stuff on load
  * });
- * 
+ *
  * Note that you can bind the 'error' event on data uri images, this will trigger when
  * data uri images isn't supported.
- * 
+ *
  * Tested in:
  * FF 3+
  * IE 6-8
