@@ -15,18 +15,20 @@ $(function () {
   'use strict';
 
   var config = {
-    demoHostname: 'blueimp.github.io'
+    demoHostname: 'blueimp.github.io',
+    uploadUrl: 'server/php/',
+    uploadAndCropUrl: 'server/php/image_crop_and_size.php'
   };
 
   var zclipInitialized = false;
   var $activeImage;
-  var $fileUpload = $('#fileUpload');
+  var $fileUpload = $('#fileupload');
   var $inWidthCrop = $('#inWidthCrop');
   var $inHeightCrop = $('#inHeightCrop');
   var cropCoordinates = {};
 
   function loadExistingFiles(){
-    $('#fileupload').each(function () {
+    $fileUpload.each(function () {
       var that = this;
       $.getJSON(this.action, function (result) {
         if (result && result.length) {
@@ -76,7 +78,7 @@ $(function () {
   $fileUpload.fileupload({
     // Uncomment the following to send cross-domain cookies:
     //xhrFields: {withCredentials: true},
-    url: 'server/php/'
+    url: config.uploadUrl
   });
 
   // Enable iframe cross-domain access via redirect option:
@@ -91,7 +93,7 @@ $(function () {
 
   if (window.location.hostname === config.demoHostname) {
     // Demo settings:
-    $('#fileupload').fileupload('option', {
+    $fileUpload.fileupload('option', {
       url: '//jquery-file-upload.appspot.com/',
       // Enable image resizing, except for Android and Opera,
       // which actually support image resizing, but fail to
@@ -129,7 +131,7 @@ $(function () {
     });
   }
 
-  /***************** added by Agustín Amenabar *******************************/
+  /***************** added by Agustín Amenabar *************************/
   $('#modal-gallery').on('displayed', function () {
     var modalData = $(this).data('modal');
     var $croppingModal = $('#croppingModal');
@@ -216,7 +218,7 @@ $(function () {
   });
   $('#btnDoCrop').click(function (ev) {
     ev.preventDefault();
-    $.post('server/php/image_crop_and_size.php', cropCoordinates, afterCropping);
+    $.post(config.uploadAndCropUrl, cropCoordinates, afterCropping);
   });
   $('#startResize').click(function () {
     var noSize = true;
@@ -234,7 +236,7 @@ $(function () {
       return;
     }
     $('#startCrop, #startResize, #inWidthCrop, #inHeightCrop').attr('disabled', 'disabled');
-    $.post('server/php/image_crop_and_size.php', resizeData, afterResize);
+    $.post(config.uploadAndCropUrl, resizeData, afterResize);
   });
 });
 
