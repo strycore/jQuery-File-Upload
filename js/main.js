@@ -19,7 +19,8 @@ $(function () {
   var config = {
     demoHostname: 'blueimp.github.io',
     uploadUrl: 'http://localhost:8888',
-    uploadAndCropUrl: 'server/php/image_crop_and_size.php'
+    uploadAndCropUrl: 'server/php/image_crop_and_size.php',
+    zclipSwfLocation: 'bower_components/jquery-zclip/ZeroClipboard.swf'
   };
 
   var zclipInitialized = false;
@@ -59,7 +60,7 @@ $(function () {
       return;
     }
     $('a.modal-copy').zclip({
-      path: 'js/ZeroClipboard.swf',
+      path: config.zclipSwfLocation,
       copy: function () {
         return $('#urlImage').val();
       }
