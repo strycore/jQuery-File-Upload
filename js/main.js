@@ -18,7 +18,7 @@ $(function () {
 
   var config = {
     demoHostname: 'blueimp.github.io',
-    uploadUrl: 'server/php/',
+    uploadUrl: 'http://localhost:8888',
     uploadAndCropUrl: 'server/php/image_crop_and_size.php'
   };
 
